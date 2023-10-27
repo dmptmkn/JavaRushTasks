@@ -8,7 +8,10 @@ import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) {
-        //напишите тут ваш код
-
+        Scanner scan = new Scanner(System.in);
+        int radius = scan.nextInt();
+        double pi = 3.14;
+        int s = (int)(pi * radius * radius);
+        System.out.println(s);
     }
 }
