@@ -24,10 +24,6 @@ public class Solution {
     }
 
     public static void printStudentsInfo() {
-        for (var pair: grades.entrySet()) {
-            String name = pair.getKey();
-            Double grade = pair.getValue();
-            System.out.println(name + " : " + grade);
-        }
+        //напишите тут ваш код
     }
 }
