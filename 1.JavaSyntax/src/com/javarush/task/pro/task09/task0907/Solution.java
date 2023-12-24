@@ -17,12 +17,27 @@ public class Solution {
     }
 
     public static String toHex(int decimalNumber) {
-        //напишите тут ваш код
-        return null;
+        StringBuilder builder = new StringBuilder();
+        if (decimalNumber <= 0) {
+            return "";
+        }
+
+        while (decimalNumber > 0) {
+            builder.insert(0, HEX.charAt(decimalNumber % 16));
+            decimalNumber = decimalNumber / 16;
+        }
+        return builder.toString();
     }
 
     public static int toDecimal(String hexNumber) {
-        //напишите тут ваш код
-        return 0;
+        if (hexNumber == null || hexNumber.equals("")) {
+            return 0;
+        }
+        int decimal = 0;
+        char[] array = hexNumber.toCharArray();
+        for (int i = 0; i < hexNumber.length(); i++) {
+            decimal = 16 * decimal + HEX.indexOf(array[i]);
+        }
+        return decimal;
     }
 }
