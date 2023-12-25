@@ -14,13 +14,20 @@ import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        Scanner console = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in);
+             InputStream input = Files.newInputStream(Path.of(scanner.nextLine()));
+             OutputStream output = Files.newOutputStream(Path.of(scanner.nextLine()))) {
+            while (input.available() > 1) {
+                int byteInt = input.read();
 
-        try (InputStream inputStream = Files.newInputStream(Paths.get(console.nextLine()));
-             OutputStream outputStream = Files.newOutputStream(Paths.get(console.nextLine()))) {
+                output.write(input.read());
+                output.write(byteInt);
+            }
+
+            if (input.available() == 1) {
+                output.write(input.read());
+            }
         }
-
-
     }
 }
 
