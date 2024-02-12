@@ -17,11 +17,32 @@ public class Snake {
     public int getX() {
         return sections.get(0).getX();
     }
+
     public int getY() {
         return sections.get(0).getY();
     }
 
     public void move() {
+        if (!isAlive()) {
+            return;
+        }
+        switch (direction) {
+            case UP:
+                move(0, -1);
+                break;
+            case RIGHT:
+                move(1, 0);
+                break;
+            case DOWN:
+                move(0, 1);
+                break;
+            case LEFT:
+                move(-1, 0);
+                break;
+        }
+    }
+
+    public void move(int a, int b) {
     }
 
     public void setDirection(SnakeDirection direction) {
