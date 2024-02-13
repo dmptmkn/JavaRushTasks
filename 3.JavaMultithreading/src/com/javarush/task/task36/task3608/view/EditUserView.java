@@ -5,29 +5,16 @@ import com.javarush.task.task36.task3608.model.ModelData;
 
 import java.util.StringJoiner;
 
-public class UsersView implements View {
+public class EditUserView implements View {
 
     private Controller controller;
 
     @Override
     public void refresh(ModelData modelData) {
         StringJoiner result = new StringJoiner("\t");
-        if (modelData.isDisplayDeletedUserList()) {
-            result.add("All deleted users:\n");
-        } else {
-            result.add("All users:\n");
-        }
-        modelData.getUsers().forEach(u -> result.add(u.toString() + "\n"));
+        result.add("User to be edited:\n");
+        result.add(modelData.getActiveUser().toString() + "\n");
         System.out.println(result.toString() + "===================================================");
-
-    }
-
-    public void fireEventShowAllUsers() {
-        controller.onShowAllUsers();
-    }
-
-    public void fireEventShowDeletedUsers() {
-        controller.onShowAllDeletedUsers();
     }
 
     @Override
