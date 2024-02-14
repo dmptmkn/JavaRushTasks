@@ -40,6 +40,13 @@ public class MainModel implements Model {
         userService.deleteUser(userId);
         loadUsers();
     }
+    @Override
+    public void changeUserData(String name, long id, int level) {
+        userService.createOrUpdateUser(name, id, level);
+        loadUsers();
+    }
+
+
 
     private List<User> getAllUsers() {
         List<User> users = userService.getUsersBetweenLevels(1, 100);

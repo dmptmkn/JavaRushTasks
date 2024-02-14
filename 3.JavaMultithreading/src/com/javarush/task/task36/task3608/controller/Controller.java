@@ -29,6 +29,12 @@ public class Controller {
         usersView.refresh(model.getModelData());
     }
 
+    public void onUserChange(String name, long id, int level) {
+        model.changeUserData(name, id, level);
+        usersView.refresh(model.getModelData());
+    }
+
+
     public void setUsersView(UsersView usersView) {
         this.usersView = usersView;
     }
@@ -41,6 +47,7 @@ public class Controller {
         model.loadUserById(userId);
         editUserView.refresh(model.getModelData());
     }
+
 
 
 }
