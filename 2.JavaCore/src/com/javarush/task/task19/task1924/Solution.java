@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 /* 
 Замена чисел
@@ -35,8 +36,11 @@ public class Solution {
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
              BufferedReader reader = new BufferedReader(new FileReader(console.readLine()))) {
             while (reader.ready()) {
-                String nextLine = reader.readLine();
-
+               String nextLine = reader.readLine();
+               for (Map.Entry<Integer, String> entry : map.entrySet()) {
+                   nextLine = nextLine.replaceAll("\\b" + entry.getKey() + "\\b", entry.getValue());
+               }
+                System.out.println(nextLine);
             }
         } catch (Exception e) {
         }
