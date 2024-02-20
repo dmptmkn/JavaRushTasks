@@ -11,12 +11,22 @@ public class Arkanoid {
     private Stand stand;
     private List<Brick> bricks;
 
+    static Arkanoid game;
+
     public Arkanoid(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
     public static void main(String[] args) {
+
+    }
+
+    void run() {
+
+    }
+
+    void move() {
 
     }
 
@@ -36,9 +46,7 @@ public class Arkanoid {
         this.height = height;
     }
 
-    public Ball getBall() {
-        return ball;
-    }
+    public Ball getBall() { return ball; }
 
     public void setBall(Ball ball) {
         this.ball = ball;
