@@ -30,7 +30,6 @@ public class Arkanoid {
 
     }
 
-
     public int getWidth() {
         return width;
     }
