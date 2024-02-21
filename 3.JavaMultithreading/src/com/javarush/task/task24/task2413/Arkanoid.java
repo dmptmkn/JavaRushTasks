@@ -1,11 +1,14 @@
 package com.javarush.task.task24.task2413;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Arkanoid {
 
     private int width;
     private int height;
+
+    private boolean isGameOver;
 
     private Ball ball;
     private Stand stand;
@@ -39,6 +42,33 @@ public class Arkanoid {
         }
     }
 
+    public void checkBricksBump() {
+        double angle = Math.random() * 360;
+
+        Iterator<Brick> brickIterator = bricks.iterator();
+        Brick nextBrick = null;
+        while (brickIterator.hasNext()) {
+            nextBrick = brickIterator.next();
+            if (ball.intersects(nextBrick)) {
+                ball.setDirection(angle);
+                brickIterator.remove();
+            }
+        }
+    }
+
+    public void checkStandBump() {
+        double angle = 90 + 20 * (Math.random() - 0.5);
+
+        if (ball.intersects(stand)) {
+            ball.setDirection(angle);
+        }
+
+    }
+
+    public void checkEndGame() {
+        if (ball.getY() > height) isGameOver = true;
+    }
+
     public int getWidth() {
         return width;
     }
@@ -55,7 +85,9 @@ public class Arkanoid {
         this.height = height;
     }
 
-    public Ball getBall() { return ball; }
+    public Ball getBall() {
+        return ball;
+    }
 
     public void setBall(Ball ball) {
         this.ball = ball;
