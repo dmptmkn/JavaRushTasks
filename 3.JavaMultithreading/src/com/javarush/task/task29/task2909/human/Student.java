@@ -22,12 +22,13 @@ public class Student extends UniversityPerson {
     public void learn() {
     }
 
-    public int getCourse() {
-        return course;
+    @Override
+    public String getPosition() {
+        return "Студент";
     }
 
-    public void printData() {
-        System.out.println("Студент: " + name);
+    public int getCourse() {
+        return course;
     }
 
     public void incAverageGradeBy01() {
