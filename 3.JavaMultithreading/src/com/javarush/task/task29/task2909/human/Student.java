@@ -7,6 +7,7 @@ import java.util.List;
 public class Student extends Human {
     private double averageGrade;
     private String university;
+    private int course;
     private Date beginningOfSession;
     private Date endOfSession;
 
@@ -20,6 +21,10 @@ public class Student extends Human {
     }
 
     public void learn() {
+    }
+
+    public int getCourse() {
+        return course;
     }
 
     public String getUniversity() {
