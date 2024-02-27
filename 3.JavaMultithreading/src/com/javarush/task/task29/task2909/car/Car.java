@@ -18,9 +18,25 @@ public class Car {
     private boolean driverAvailable;
     private int numberOfPassengers;
 
-    public Car(int type, int numberOfPassengers) {
+    protected Car(int type, int numberOfPassengers) {
         this.type = type;
         this.numberOfPassengers = numberOfPassengers;
+    }
+
+    public static Car create(int type, int numberOfPassengers) {
+        Car newCar = null;
+        switch (type) {
+            case 0:
+                newCar = new Truck(numberOfPassengers);
+                break;
+            case 1:
+                newCar = new Sedan(numberOfPassengers);
+                break;
+            case 2:
+                newCar = new Cabriolet(numberOfPassengers);
+                break;
+        }
+        return newCar;
     }
 
     public int fill(double numberOfLiters) {
