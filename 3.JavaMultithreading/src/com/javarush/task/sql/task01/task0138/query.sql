@@ -1,3 +1,3 @@
 SELECT *
 FROM ip2country
-LIMIT 50 OFFSET 50
+ORDER BY ip_from
