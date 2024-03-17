@@ -1,3 +1,4 @@
 SELECT country_code, ip_from, ip_to
 FROM ip2country
-LIMIT 30 OFFSET 78
+ORDER BY ip_from ASC
+LIMIT 17
