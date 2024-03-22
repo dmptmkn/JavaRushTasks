@@ -12,8 +12,8 @@ public class Server {
 
     public static void sendBroadcastMessage(Message message) {
         try {
-            for (Map.Entry<String, Connection> entry : connectionMap.entrySet()) {
-                entry.getValue().send(message);
+            for (Map.Entry<String, Connection> nextConnection : connectionMap.entrySet()) {
+                nextConnection.getValue().send(message);
             }
         } catch (IOException e) {
             System.out.println("Ошибка при отправке сообщения");
@@ -72,6 +72,18 @@ public class Server {
             for (Map.Entry<String, Connection> nextConnection : connectionMap.entrySet()) {
                 if (!nextConnection.getKey().equals(userName))
                     connection.send(new Message(MessageType.USER_ADDED, nextConnection.getKey()));
+            }
+        }
+
+        private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
+            while (true) {
+                Message newMessage = connection.receive();
+                if (newMessage.getType() == MessageType.TEXT) {
+                    String message = userName + ": " + newMessage.getData();
+                    sendBroadcastMessage(new Message(MessageType.TEXT, message));
+                } else {
+                    ConsoleHelper.writeMessage("Ошибка при отправке сообщения");
+                }
             }
         }
     }
