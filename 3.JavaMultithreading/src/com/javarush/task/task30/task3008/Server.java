@@ -46,7 +46,26 @@ public class Server {
         @Override
         public void run() {
         }
+
+        private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
+            String userName = null;
+
+            while (true) {
+                connection.send(new Message(MessageType.NAME_REQUEST, "Введите имя пользователя"));
+                Message newMessage = connection.receive();
+                if (newMessage.getType() != MessageType.USER_NAME) continue;
+                else if (newMessage.getType() == MessageType.USER_NAME
+                        && newMessage.getData() != null
+                        && !newMessage.getData().equals("")
+                        && !connectionMap.containsKey(newMessage.getData())) {
+                    userName = newMessage.getData();
+                    connectionMap.put(userName, connection);
+                    connection.send(new Message(MessageType.NAME_ACCEPTED, "Новый пользователь добавлен"));
+                    break;
+                }
+            }
+
+            return userName;
+        }
     }
-
-
 }
