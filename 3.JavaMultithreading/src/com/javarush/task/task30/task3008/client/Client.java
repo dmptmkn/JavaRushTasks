@@ -4,13 +4,44 @@ import com.javarush.task.task30.task3008.Connection;
 import com.javarush.task.task30.task3008.ConsoleHelper;
 import com.javarush.task.task30.task3008.Message;
 import com.javarush.task.task30.task3008.MessageType;
-
 import java.io.IOException;
 
 public class Client {
 
     protected Connection connection;
     private volatile boolean clientConnected = false;
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.run();
+    }
+
+    public void run() {
+        SocketThread socketThread = getSocketThread();
+        socketThread.setDaemon(true);
+        socketThread.start();
+        synchronized (this) {
+            try {
+                wait();
+                notify();
+            } catch (InterruptedException e) {
+                ConsoleHelper.writeMessage("Произошла ошибка");
+                return;
+            }
+        }
+        if (clientConnected) {
+            ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
+        } else {
+            ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+        }
+
+        String message = null;
+        while (clientConnected) {
+            message = ConsoleHelper.readString();
+            if (message.equals("exit")) break;
+            if (shouldSendTextFromConsole()) sendTextMessage(message);
+        }
+    }
 
     protected String getServerAddress() {
         ConsoleHelper.writeMessage("Введите адрес сервера");
@@ -45,5 +76,6 @@ public class Client {
     }
 
     public class SocketThread extends Thread {
+
     }
 }
