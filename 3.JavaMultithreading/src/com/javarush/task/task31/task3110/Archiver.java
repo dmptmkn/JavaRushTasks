@@ -5,8 +5,8 @@ import com.javarush.task.task31.task3110.exception.WrongZipFileException;
 import java.io.IOException;
 
 public class Archiver {
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) throws Exception {
         Operation operation = null;
         do {
             try {
@@ -17,41 +17,21 @@ public class Archiver {
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("Произошла ошибка. Проверьте введенные данные.");
             }
+
         } while (operation != Operation.EXIT);
     }
 
+
     public static Operation askOperation() throws IOException {
-        ConsoleHelper.writeMessage("Выберите операцию:\n" +
-                Operation.CREATE.ordinal() + " - упаковать файлы в архив\n" +
-                Operation.ADD.ordinal() + " - добавить файл в архив\n" +
-                Operation.REMOVE.ordinal() + " - удалить файл из архива\n" +
-                Operation.EXTRACT.ordinal() + " - распаковать архив\n" +
-                Operation.CONTENT.ordinal() + " - просмотреть содержимое архива\n" +
-                Operation.EXIT.ordinal() + " - выход");
-        int operationNum = ConsoleHelper.readInt();
+        ConsoleHelper.writeMessage("");
+        ConsoleHelper.writeMessage("Выберите операцию:");
+        ConsoleHelper.writeMessage(String.format("\t %d - упаковать файлы в архив", Operation.CREATE.ordinal()));
+        ConsoleHelper.writeMessage(String.format("\t %d - добавить файл в архив", Operation.ADD.ordinal()));
+        ConsoleHelper.writeMessage(String.format("\t %d - удалить файл из архива", Operation.REMOVE.ordinal()));
+        ConsoleHelper.writeMessage(String.format("\t %d - распаковать архив", Operation.EXTRACT.ordinal()));
+        ConsoleHelper.writeMessage(String.format("\t %d - просмотреть содержимое архива", Operation.CONTENT.ordinal()));
+        ConsoleHelper.writeMessage(String.format("\t %d - выход", Operation.EXIT.ordinal()));
 
-        Operation operation = null;
-        switch (operationNum) {
-            case 0:
-                operation = Operation.CREATE;
-                break;
-            case 1:
-                operation = Operation.ADD;
-                break;
-            case 2:
-                operation = Operation.REMOVE;
-                break;
-            case 3:
-                operation = Operation.EXTRACT;
-                break;
-            case 4:
-                operation = Operation.CONTENT;
-                break;
-            case 5:
-                operation = Operation.EXIT;
-                break;
-        }
-
-        return operation;
+        return Operation.values()[ConsoleHelper.readInt()];
     }
 }
