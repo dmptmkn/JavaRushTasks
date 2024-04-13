@@ -35,6 +35,10 @@ public class View extends JFrame implements ActionListener {
     public void initEditor() {
     }
 
+    public void selectedTabChanged() {
+
+    }
+
     public void exit() {
         controller.exit();
     }
