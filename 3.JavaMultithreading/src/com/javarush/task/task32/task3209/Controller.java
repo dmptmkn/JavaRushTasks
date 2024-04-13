@@ -10,7 +10,7 @@ public class Controller {
     private File currentFile;
 
     public Controller(View view) {
-        this.view =     view;
+        this.view = view;
     }
 
     public static void main(String[] args) {
