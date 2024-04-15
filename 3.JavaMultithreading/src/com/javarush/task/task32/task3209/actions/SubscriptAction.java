@@ -12,4 +12,5 @@ public class SubscriptAction extends StyledEditorKit.StyledTextAction {
     @Override
     public void actionPerformed(ActionEvent e) {
     }
+
 }

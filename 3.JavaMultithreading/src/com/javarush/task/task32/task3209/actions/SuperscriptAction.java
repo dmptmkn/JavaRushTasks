@@ -10,5 +10,6 @@ public class SuperscriptAction extends StyledEditorKit.StyledTextAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
     }
 }
