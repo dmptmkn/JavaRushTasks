@@ -30,9 +30,41 @@ public class Controller {
     }
 
     public void openDocument() {
+        view.selectHtmlTab();
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new HTMLFileFilter());
+        int choose = fileChooser.showOpenDialog(view);
+        if (choose == JFileChooser.APPROVE_OPTION) {
+            currentFile = fileChooser.getSelectedFile();
+            resetDocument();
+            view.setTitle(currentFile.getName());
+            FileReader fileReader = null;
+            try {
+                fileReader = new FileReader(currentFile);
+                new HTMLEditorKit().read(fileReader, document, 0);
+                fileReader.close();
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+            view.resetUndo();
+        }
     }
 
     public void saveDocument() {
+        view.selectHtmlTab();
+        if (currentFile == null) {
+            saveDocumentAs();
+        } else {
+            view.setTitle(currentFile.getName());
+            FileWriter fileWriter = null;
+            try {
+                fileWriter = new FileWriter(currentFile);
+                new HTMLEditorKit().write(fileWriter, document, 0, document.getLength());
+                fileWriter.close();
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+        }
     }
 
     public void saveDocumentAs() {
