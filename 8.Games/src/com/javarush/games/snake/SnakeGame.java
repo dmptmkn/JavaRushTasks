@@ -24,7 +24,5 @@ public class SnakeGame extends Game {
 
     private void createGame() {
         drawScene();
-        Apple newApple = new Apple(7, 7);
-        newApple.draw(this);
     }
 }
