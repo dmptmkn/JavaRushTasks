@@ -11,7 +11,7 @@ CREATE TABLE employee
 
 insert into employee (id, name, date_of_birth, position, department)
 values (1, 'Tom', '1985-10-05', 'backend developer', 'omega'),
-       (2, 'Jim', '1979-11-24', 'manager', 'bravo'),
+       (2, 'Jim', '1979-11-24', 'backend developer', 'bravo'),
        (3, 'Daniel', '2000-07-09', 'frontend developer', 'delta'),
        (4, 'Amy', '1995-05-22', 'backend developer', 'alpha'),
        (5, 'Lee', '2001-07-11', 'backend developer', 'omega'),
