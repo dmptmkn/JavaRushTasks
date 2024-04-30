@@ -14,7 +14,6 @@ public class Snake extends GameObject {
     private static final String HEAD_SIGN = "\uD83D\uDC7E";
     private static final String BODY_SIGN = "\u26AB";
 
-
     private List<GameObject> snakeParts = new ArrayList<>();
 
     public Snake(int x, int y) {
@@ -38,5 +37,30 @@ public class Snake extends GameObject {
     }
 
     public void move() {
+    }
+
+    public GameObject createNewHead() {
+        GameObject head = snakeParts.get(0);
+        GameObject newHead = null;
+        switch (direction) {
+            case UP:
+                newHead = new GameObject(head.x, head.y - 1);
+                break;
+            case DOWN:
+                newHead = new GameObject(head.x, head.y + 1);
+                break;
+            case LEFT:
+                newHead = new GameObject(head.x - 1, head.y);
+                break;
+            case RIGHT:
+                newHead = new GameObject(head.x + 1, head.y);
+                break;
+        }
+
+        return newHead;
+    }
+
+    public void removeTail() {
+        snakeParts.remove(snakeParts.size() - 1);
     }
 }
