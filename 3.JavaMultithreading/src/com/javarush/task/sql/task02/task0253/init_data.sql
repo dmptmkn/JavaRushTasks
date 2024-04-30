@@ -4,11 +4,11 @@ CREATE TABLE cars
 (
     `id`        INT          not null auto_increment primary key,
     `name`      VARCHAR(100) not null,
-    `prod_year` DATE         not null,
+    `prod_date` DATE         not null,
     `price`     INT          not null
 );
 
-insert into cars (id, name, prod_year, price)
+insert into cars (id, name, prod_date, price)
 values (1, 'White Car', '2020-03-19', 45000),
        (2, 'Black Car', '2020-01-25', 35000),
        (3, 'Grey Car', '2021-11-20', 25000),
