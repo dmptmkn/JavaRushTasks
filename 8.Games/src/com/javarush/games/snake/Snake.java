@@ -33,7 +33,7 @@ public class Snake extends GameObject {
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        if (direction != this.direction.getOpposite()) this.direction = direction;
     }
 
     public void move() {
