@@ -27,7 +27,7 @@ public class Snake extends GameObject {
         for (int i = 0; i < snakeParts.size(); i++) {
             GameObject snakePart = snakeParts.get(i);
             String snakeSign = (i != 0) ? BODY_SIGN : HEAD_SIGN;
-            Color snakeColor = !isAlive ? Color.RED: Color.BLACK;
+            Color snakeColor = !isAlive ? Color.RED : Color.BLACK;
             game.setCellValueEx(snakePart.x, snakePart.y, Color.NONE, snakeSign, snakeColor, 75);
         }
     }
@@ -37,6 +37,14 @@ public class Snake extends GameObject {
     }
 
     public void move() {
+        GameObject newHead = createNewHead();
+        if (newHead.x >= SnakeGame.WIDTH || newHead.x < 0 || newHead.y >= SnakeGame.HEIGHT || newHead.y < 0) {
+            isAlive = false;
+            return;
+        }
+
+        snakeParts.add(0, newHead);
+        removeTail();
     }
 
     public GameObject createNewHead() {
