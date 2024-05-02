@@ -36,10 +36,15 @@ public class Snake extends GameObject {
         if (direction != this.direction.getOpposite()) this.direction = direction;
     }
 
-    public void move() {
+    public void move(Apple apple) {
         GameObject newHead = createNewHead();
+
         if (newHead.x >= SnakeGame.WIDTH || newHead.x < 0 || newHead.y >= SnakeGame.HEIGHT || newHead.y < 0) {
             isAlive = false;
+            return;
+        } else if (newHead.x == apple.x && newHead.y == apple.y) {
+            apple.isAlive = false;
+            snakeParts.add(0, newHead);
             return;
         }
 
