@@ -32,9 +32,9 @@ public class SnakeGame extends Game {
     }
 
     private void createGame() {
-        this.snake = new Snake(WIDTH / 2, HEIGHT / 2);
+        snake = new Snake(WIDTH / 2, HEIGHT / 2);
         createNewApple();
-        this.turnDelay = 300;
+        turnDelay = 300;
         setTurnTimer(turnDelay);
         isGameStopped = false;
         drawScene();
@@ -53,7 +53,13 @@ public class SnakeGame extends Game {
     }
 
     private void createNewApple() {
-        this.apple = new Apple(getRandomNumber(WIDTH), getRandomNumber(HEIGHT));
+        Apple newApple;
+        do {
+            int x = getRandomNumber(WIDTH);
+            int y = getRandomNumber(HEIGHT);
+            newApple = new Apple(x, y);
+        } while (snake.checkCollision(newApple));
+        apple = newApple;
     }
 
     @Override
@@ -75,6 +81,8 @@ public class SnakeGame extends Game {
             snake.setDirection(Direction.UP);
         } else if (key == Key.DOWN) {
             snake.setDirection(Direction.DOWN);
+        } else if (key == Key.SPACE && isGameStopped) {
+            createGame();
         }
     }
 }

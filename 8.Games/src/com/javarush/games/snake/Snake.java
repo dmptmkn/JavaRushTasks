@@ -5,7 +5,6 @@ import com.javarush.engine.cell.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Snake extends GameObject {
 
     public boolean isAlive = true;
@@ -83,9 +82,9 @@ public class Snake extends GameObject {
         snakeParts.remove(snakeParts.size() - 1);
     }
 
-    public boolean checkCollision(GameObject newHead) {
+    public boolean checkCollision(GameObject newObject) {
         for (GameObject nextPart : snakeParts) {
-            if (nextPart.x == newHead.x && nextPart.y == newHead.y) return true;
+            if (nextPart.x == newObject.x && nextPart.y == newObject.y) return true;
         }
         return false;
     }
