@@ -36,6 +36,10 @@ public class Snake extends GameObject {
         if (direction != this.direction.getOpposite()) this.direction = direction;
     }
 
+    public int getLength() {
+        return snakeParts.size();
+    }
+
     public void move(Apple apple) {
         GameObject newHead = createNewHead();
 

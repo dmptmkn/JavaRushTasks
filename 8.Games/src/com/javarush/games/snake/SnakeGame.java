@@ -10,6 +10,7 @@ public class SnakeGame extends Game {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
 
+    private static final int GOAL = 28;
     private int turnDelay;
 
     private boolean isGameStopped;
@@ -45,6 +46,12 @@ public class SnakeGame extends Game {
         showMessageDialog(Color.WHITE, "GAME OVER", Color.RED, 75);
     }
 
+    private void win() {
+        stopTurnTimer();
+        isGameStopped = true;
+        showMessageDialog(Color.WHITE, "YOU WIN", Color.RED, 75);
+    }
+
     private void createNewApple() {
         this.apple = new Apple(getRandomNumber(WIDTH), getRandomNumber(HEIGHT));
     }
@@ -54,6 +61,7 @@ public class SnakeGame extends Game {
         snake.move(apple);
         if (!apple.isAlive) createNewApple();
         if (!snake.isAlive) gameOver();
+        if (snake.getLength() > GOAL) win();
         drawScene();
     }
 
