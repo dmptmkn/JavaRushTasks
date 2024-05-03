@@ -4,15 +4,13 @@ import com.javarush.engine.cell.*;
 
 public class SnakeGame extends Game {
 
-    private Snake snake;
-    private Apple apple;
-
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
-
     private static final int GOAL = 28;
-    private int turnDelay;
 
+    private Snake snake;
+    private Apple apple;
+    private int turnDelay;
     private boolean isGameStopped;
 
     @Override
@@ -32,11 +30,12 @@ public class SnakeGame extends Game {
     }
 
     private void createGame() {
-        snake = new Snake(WIDTH / 2, HEIGHT / 2);
-        createNewApple();
         turnDelay = 300;
         setTurnTimer(turnDelay);
         isGameStopped = false;
+
+        snake = new Snake(WIDTH / 2, HEIGHT / 2);
+        createNewApple();
         drawScene();
     }
 
