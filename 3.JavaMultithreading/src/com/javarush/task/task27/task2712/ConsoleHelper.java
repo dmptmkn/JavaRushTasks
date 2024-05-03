@@ -16,11 +16,16 @@ public class ConsoleHelper {
         System.out.println(message);
     }
 
-    public static String readString() throws IOException {
+    public static String readString() {
         String s = null;
+
         while (true) {
-            s = console.readLine();
-            break;
+            try {
+                s = console.readLine();
+                break;
+            } catch (IOException e) {
+                writeMessage("Ошибка ввода!");
+            }
         }
 
         return s;
@@ -62,4 +67,6 @@ public class ConsoleHelper {
 
         return order;
     }
+
+
 }
