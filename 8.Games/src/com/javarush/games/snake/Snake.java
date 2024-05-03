@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Snake extends GameObject {
 
-    private static final String HEAD_SIGN = "\uD83D\uDC7E";
+    private static final String HEAD_SIGN = "\u0040";
     private static final String BODY_SIGN = "\u26AB";
 
     private List<GameObject> snakeParts = new ArrayList<>();
