@@ -32,8 +32,22 @@ public class Snake extends GameObject {
     }
 
     public void setDirection(Direction direction) {
+        if ((this.direction == Direction.LEFT && isSameX()) || (this.direction == Direction.RIGHT && isSameX()))
+            return;
+        else if ((this.direction == Direction.UP && isSameY()) || (this.direction == Direction.DOWN && isSameY()))
+            return;
+
         if (direction != this.direction.getOpposite()) this.direction = direction;
     }
+
+    private boolean isSameX() {
+        return snakeParts.get(0).x == snakeParts.get(1).x;
+    }
+
+    private boolean isSameY() {
+        return snakeParts.get(0).y == snakeParts.get(1).y;
+    }
+
 
     public int getLength() {
         return snakeParts.size();
