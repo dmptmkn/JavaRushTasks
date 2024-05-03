@@ -51,10 +51,10 @@ public class Snake extends GameObject {
         removeTail();
     }
 
+
     public GameObject createNewHead() {
         GameObject head = snakeParts.get(0);
         GameObject newHead = null;
-
         switch (direction) {
             case UP:
                 newHead = new GameObject(head.x, head.y - 1);

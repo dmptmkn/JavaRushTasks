@@ -10,13 +10,27 @@ public class SnakeGame extends Game {
 
     private Snake snake;
     private Apple apple;
-    private int turnDelay;
+    private int score;
     private boolean isGameStopped;
+    private int turnDelay;
 
     @Override
     public void initialize() {
         setScreenSize(HEIGHT, WIDTH);
         createGame();
+    }
+
+    private void createGame() {
+        turnDelay = 300;
+        setTurnTimer(turnDelay);
+        isGameStopped = false;
+        score = 0;
+        setScore(score);
+
+        snake = new Snake(WIDTH / 2, HEIGHT / 2);
+        createNewApple();
+
+        drawScene();
     }
 
     private void drawScene() {
@@ -25,30 +39,9 @@ public class SnakeGame extends Game {
                 setCellValueEx(x, y, Color.DARKSEAGREEN, "");
             }
         }
+
         snake.draw(this);
         apple.draw(this);
-    }
-
-    private void createGame() {
-        turnDelay = 300;
-        setTurnTimer(turnDelay);
-        isGameStopped = false;
-
-        snake = new Snake(WIDTH / 2, HEIGHT / 2);
-        createNewApple();
-        drawScene();
-    }
-
-    private void gameOver() {
-        stopTurnTimer();
-        isGameStopped = true;
-        showMessageDialog(Color.WHITE, "GAME OVER", Color.RED, 75);
-    }
-
-    private void win() {
-        stopTurnTimer();
-        isGameStopped = true;
-        showMessageDialog(Color.WHITE, "YOU WIN", Color.RED, 75);
     }
 
     private void createNewApple() {
@@ -62,17 +55,15 @@ public class SnakeGame extends Game {
     }
 
     @Override
-    public void onTurn(int n) {
-        snake.move(apple);
-        if (!apple.isAlive) createNewApple();
-        if (!snake.isAlive) gameOver();
-        if (snake.getLength() > GOAL) win();
-        drawScene();
+    public void setScore(int score) {
+        this.score = score;
     }
 
     @Override
     public void onKeyPress(Key key) {
-        if (key == Key.LEFT) {
+        if (key == Key.SPACE && isGameStopped) {
+            createGame();
+        } else if (key == Key.LEFT) {
             snake.setDirection(Direction.LEFT);
         } else if (key == Key.RIGHT) {
             snake.setDirection(Direction.RIGHT);
@@ -80,8 +71,37 @@ public class SnakeGame extends Game {
             snake.setDirection(Direction.UP);
         } else if (key == Key.DOWN) {
             snake.setDirection(Direction.DOWN);
-        } else if (key == Key.SPACE && isGameStopped) {
-            createGame();
         }
+    }
+
+    @Override
+    public void onTurn(int i) {
+        snake.move(apple);
+
+        if (!apple.isAlive) {
+            createNewApple();
+
+            score += 5;
+            setScore(score);
+
+            turnDelay -= 10;
+            setTurnTimer(turnDelay);
+        }
+        if (!snake.isAlive) gameOver();
+        if (snake.getLength() > GOAL) win();
+
+        drawScene();
+    }
+
+    private void win() {
+        stopTurnTimer();
+        isGameStopped = true;
+        showMessageDialog(Color.WHITE, "YOU WIN", Color.RED, 75);
+    }
+
+    private void gameOver() {
+        stopTurnTimer();
+        isGameStopped = true;
+        showMessageDialog(Color.WHITE, "GAME OVER", Color.RED, 75);
     }
 }
