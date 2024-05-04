@@ -4,7 +4,6 @@ import com.javarush.task.task27.task2712.ConsoleHelper;
 import com.javarush.task.task27.task2712.Tablet;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 public class Order {
@@ -17,11 +16,27 @@ public class Order {
         dishes = ConsoleHelper.getAllDishesForOrder();
     }
 
+    public int getTotalCookingTime() {
+        int totalCookingTime = 0;
+
+        for (Dish nextDish : dishes) {
+            totalCookingTime += nextDish.getDuration();
+        }
+
+        return totalCookingTime;
+    }
+
+    public boolean isEmpty() {
+        return dishes.isEmpty();
+    }
+
     @Override
     public String toString() {
         if (dishes.isEmpty()) {
             return "";
         }
-        return "Your order: " + dishes.toString() + " of " + tablet.toString();
+        return "Your order: " + dishes.toString() +
+                " of " + tablet.toString() +
+                ", cooking time " + getTotalCookingTime() + "min";
     }
 }
