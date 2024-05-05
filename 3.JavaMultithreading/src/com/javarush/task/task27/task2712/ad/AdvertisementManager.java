@@ -1,6 +1,7 @@
 package com.javarush.task.task27.task2712.ad;
 
-import com.javarush.task.task27.task2712.ConsoleHelper;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdvertisementManager {
 
@@ -12,7 +13,10 @@ public class AdvertisementManager {
         this.timeSeconds = timeSeconds;
     }
 
-    public void processVideos() {
-        ConsoleHelper.writeMessage("calling processVideos method");
+    public void processVideos() throws NoVideoAvailableException {
+        List<Advertisement> adList = storage.list().stream()
+                .filter(ad -> (ad.getDuration() / 60) <= timeSeconds)
+                .collect(Collectors.toList());
+        if (adList.isEmpty()) throw new NoVideoAvailableException();
     }
 }

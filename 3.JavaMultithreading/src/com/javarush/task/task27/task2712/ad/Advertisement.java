@@ -19,6 +19,11 @@ public class Advertisement {
         if (hits != 0) amountPerOneDisplaying = initialAmount / hits;
     }
 
+    public void revalidate() {
+        if (hits <= 0) throw new UnsupportedOperationException();
+        else hits--;
+    }
+
     public String getName() {
         return name;
     }
