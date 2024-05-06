@@ -1,5 +1,8 @@
 package com.javarush.task.task27.task2712.ad;
 
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
+import com.javarush.task.task27.task2712.statistic.event.NoAvailableVideoEventDataRow;
+
 public class Advertisement {
 
     public Object content;
@@ -21,7 +24,9 @@ public class Advertisement {
     }
 
     public void revalidate() {
-        if (hits <= 0) throw new UnsupportedOperationException();
+        if (hits <= 0) {
+            throw new NoVideoAvailableException();
+        }
         else hits--;
     }
 

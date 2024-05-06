@@ -14,9 +14,6 @@ public class Restaurant {
         c1.addObserver(w1);
 
         t1.createOrder();
-        t1.createOrder();
-        t1.createOrder();
-        t1.createOrder();
     }
 
 }

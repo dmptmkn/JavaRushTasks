@@ -1,5 +1,9 @@
 package com.javarush.task.task27.task2712.ad;
 
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
+import com.javarush.task.task27.task2712.statistic.event.NoAvailableVideoEventDataRow;
+import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +23,8 @@ public class AdvertisementManager {
     public void processVideos() {
         this.totalTimeSecondsLeft = Integer.MAX_VALUE;
         obtainOptimalVideoSet(new ArrayList<>(), timeSeconds, 0L);
-
+        VideoSelectedEventDataRow dataRow = new VideoSelectedEventDataRow(optimalVideoSet, maxAmount, timeSeconds - totalTimeSecondsLeft);
+        StatisticManager.getInstance().register(dataRow);
         displayAdvertisement();
     }
 
