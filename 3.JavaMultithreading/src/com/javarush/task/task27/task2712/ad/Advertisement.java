@@ -10,13 +10,14 @@ public class Advertisement {
     private int duration;
     private long amountPerOneDisplaying;
 
+
     public Advertisement(Object content, String name, long initialAmount, int hits, int duration) {
         this.content = content;
         this.name = name;
         this.initialAmount = initialAmount;
         this.hits = hits;
         this.duration = duration;
-        if (hits != 0) amountPerOneDisplaying = initialAmount / hits;
+        amountPerOneDisplaying = hits > 0 ? initialAmount / hits : 0;
     }
 
     public void revalidate() {
@@ -34,5 +35,9 @@ public class Advertisement {
 
     public long getAmountPerOneDisplaying() {
         return amountPerOneDisplaying;
+    }
+    
+    public boolean isActive() {
+        return hits > 0;
     }
 }
