@@ -9,11 +9,16 @@ public class Restaurant {
         Tablet t1 = new Tablet(1);
         Cook c1 = new Cook("Gordon");
         Waiter w1 = new Waiter();
+        DirectorTablet dt1 = new DirectorTablet();
 
         t1.addObserver(c1);
         c1.addObserver(w1);
 
         t1.createOrder();
+        dt1.printActiveVideoSet();
+        dt1.printArchivedVideoSet();
+        dt1.printCookWorkloading();
+        dt1.printAdvertisementProfit();
     }
 
 }
