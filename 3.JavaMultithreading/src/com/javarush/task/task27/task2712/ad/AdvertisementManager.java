@@ -1,16 +1,16 @@
 package com.javarush.task.task27.task2712.ad;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AdvertisementManager {
 
     private final AdvertisementStorage storage = AdvertisementStorage.getInstance();
-
     private int timeSeconds;
+
+    private long maxAmount;
+    private List<Advertisement> optimalVideoSet;
+    private int totalTimeSecondsLeft;
 
     public AdvertisementManager(int timeSeconds) {
         this.timeSeconds = timeSeconds;
@@ -22,10 +22,6 @@ public class AdvertisementManager {
 
         displayAdvertisement();
     }
-
-    private long maxAmount;
-    private List<Advertisement> optimalVideoSet;
-    private int totalTimeSecondsLeft;
 
     private void obtainOptimalVideoSet(List<Advertisement> totalList, int currentTimeSecondsLeft, long currentAmount) {
         if (currentTimeSecondsLeft < 0) {
