@@ -1,4 +1,4 @@
 SELECT gym.location, person.location
-FROM gyms gym, customers person
+FROM gyms AS gym, customers AS person
 WHERE person.location != 'London'
 GROUP BY gym.location, person.location
