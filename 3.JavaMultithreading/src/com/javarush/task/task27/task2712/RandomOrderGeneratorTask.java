@@ -1,26 +1,26 @@
 package com.javarush.task.task27.task2712;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RandomOrderGeneratorTask implements Runnable {
 
-    private List<Tablet> allTablets;
-    private int orderInterval;
+    private List<Tablet> tablets;
+    private int interval;
 
     public RandomOrderGeneratorTask(List<Tablet> allTablets, int orderInterval) {
-        this.allTablets = allTablets;
-        this.orderInterval = orderInterval;
+        this.tablets = allTablets;
+        this.interval = orderInterval;
     }
 
     @Override
     public void run() {
-        int randomIndex = (int) (Math.random() * (allTablets.size() - 1));
-        Tablet randomTablet = allTablets.get(randomIndex);
+        int randomIndex = (int) (Math.random() * (tablets.size() - 1));
+        Tablet randomTablet = tablets.get(randomIndex);
+
         while (!Thread.currentThread().isInterrupted()) {
             randomTablet.createTestOrder();
             try {
-                wait(orderInterval);
+                wait(interval);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
