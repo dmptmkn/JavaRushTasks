@@ -5,6 +5,8 @@ import com.javarush.task.task27.task2712.kitchen.Waiter;
 
 public class Restaurant {
 
+    private static final int ORDER_CREATING_INTERVAL = 100;
+
     public static void main(String[] args) {
         Tablet t1 = new Tablet(1);
         Cook c1 = new Cook("Gordon");
