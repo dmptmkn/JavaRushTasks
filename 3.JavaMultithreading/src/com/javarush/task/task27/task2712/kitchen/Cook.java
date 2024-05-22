@@ -6,11 +6,13 @@ import com.javarush.task.task27.task2712.statistic.StatisticManager;
 import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow;
 
 import java.util.Observable;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class Cook extends Observable {
+public class Cook implements Runnable {
 
     public String name;
     private boolean busy;
+    private LinkedBlockingQueue<Order> queue;
 
     public Cook(String name) {
         this.name = name;
@@ -18,8 +20,6 @@ public class Cook extends Observable {
 
     public void startCookingOrder(Order order) {
         this.busy = true;
-
-        Tablet tablet = order.getTablet();
 
         ConsoleHelper.writeMessage(name + " Start cooking - " + order);
 
@@ -32,9 +32,11 @@ public class Cook extends Observable {
         } catch (InterruptedException ignored) {
         }
 
-        setChanged();
-        notifyObservers(order);
         this.busy = false;
+    }
+
+    public void setQueue(LinkedBlockingQueue<Order> queue) {
+        this.queue = queue;
     }
 
     @Override
@@ -44,5 +46,16 @@ public class Cook extends Observable {
 
     public boolean isBusy() {
         return busy;
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                Thread.sleep(10);
+                if (!queue.isEmpty()) startCookingOrder(queue.take());
+            }
+        } catch (InterruptedException e) {
+        }
     }
 }

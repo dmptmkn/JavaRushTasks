@@ -14,11 +14,9 @@ public class StatisticManager {
 
     private static StatisticManager instance;
     private StatisticStorage statisticStorage;
-    private Set<Cook> cooks;
 
     private StatisticManager() {
         this.statisticStorage = new StatisticStorage();
-        this.cooks = new HashSet<>();
     }
 
     public static StatisticManager getInstance() {
@@ -78,20 +76,13 @@ public class StatisticManager {
         statisticStorage.put(data);
     }
 
-    public void register(Cook cook) {
-        cooks.add(cook);
-    }
-
-    public Set<Cook> getCooks() {
-        return cooks;
-    }
 
     private class StatisticStorage {
         Map<EventType, List<EventDataRow>> storage = new HashMap<>();
 
         public StatisticStorage() {
             for (EventType eventType : EventType.values()) {
-                storage.put(eventType, new ArrayList<EventDataRow>());
+                storage.put(eventType, new ArrayList<>());
             }
         }
 
@@ -107,5 +98,4 @@ public class StatisticManager {
             return storage.get(eventType);
         }
     }
-
 }
