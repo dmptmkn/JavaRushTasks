@@ -17,6 +17,6 @@ public class Solution {
     }
 
     public static boolean helloWorldChecker(String s) {
-        return StringUtils.containsOnly(s, 'H', 'e', 'l', 'o', ' ', 'W', 'r', 'd', '!');
+        return StringUtils.containsOnly(s, "Helo Wrd!");
     }
 }
