@@ -19,6 +19,6 @@ public class Solution {
     }
 
     public static Collection<Integer> compute(Set<Integer> setA, Set<Integer> setB) {
-        return CollectionUtils.removeAll(setA, setB);
+        return CollectionUtils.subtract(setA, setB);
     }
 }
