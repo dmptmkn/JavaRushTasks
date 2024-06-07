@@ -29,9 +29,9 @@ public class Candidate {
     public boolean equals(Object obj) {
         if (this == obj) return true;
 
-        if (!(obj instanceof Candidate candidate)) return false;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
 
-        return EqualsBuilder.reflectionEquals(this, candidate, true, null, "name", "age", "height", "weight");
+        return EqualsBuilder.reflectionEquals(this, obj, true, null, "name", "age", "height", "weight");
     }
 
     @Override
