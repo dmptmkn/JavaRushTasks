@@ -13,13 +13,13 @@ public abstract class Creature {
         this.soundLogic = soundLogic;
     }
 
-    abstract String getName();
+    public abstract String getName();
 
-    void howDoIMove() {
+    public void howDoIMove() {
         moveLogic.move(getName());
     }
 
-    void howDoISound() {
+    public void howDoISound() {
         soundLogic.sound(getName());
     }
 }

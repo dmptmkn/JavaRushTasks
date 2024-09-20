@@ -10,7 +10,7 @@ public class Cat extends Creature {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Кошка";
     }
 

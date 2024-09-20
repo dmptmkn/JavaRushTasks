@@ -9,7 +9,7 @@ public class Human extends Creature {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Человек";
     }
 

@@ -12,5 +12,7 @@ public class Solution {
 
     public static void main(String[] args) {
         Cow cow = new Cow(new Fly(), new Meow());
+        cow.howDoIMove();
+        cow.howDoISound();
     }
 }

@@ -10,7 +10,7 @@ public class Cow extends Creature {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Корова";
     }
 
